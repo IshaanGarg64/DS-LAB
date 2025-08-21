@@ -2,10 +2,6 @@
 using namespace std;
 
 void bubbleSort(int arr[], int size) {
-    if (size == 0) {
-        cout << "Array is empty. Cannot sort.\n";
-        return;
-    }
     for (int i = 0; i < size - 1; i++) {
         for (int j = 0; j < size - i - 1; j++) {
             if (arr[j] > arr[j + 1]) {
@@ -37,10 +33,23 @@ int removeDuplicates(int arr[], int n) {
     return j;
 }
 
+int countInversions(int arr[], int n) {
+    int invCount = 0;
+    for (int i = 0; i < n - 1; i++) {
+        for (int j = i + 1; j < n; j++) {
+            if (arr[i] > arr[j])
+                invCount++;
+        }
+    }
+    return invCount;
+}
 
 int main() {
     int arr[5] = {3, 1, 2, 5, 3};
     int n = 5;
+
+    int inversions = countInversions(arr, n);
+    cout << "Number of inversions: " << inversions << "\n";
 
     bubbleSort(arr, n);
 
@@ -61,3 +70,4 @@ int main() {
 
     return 0;
 }
+
