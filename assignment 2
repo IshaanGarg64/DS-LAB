@@ -1,0 +1,63 @@
+#include <iostream>
+using namespace std;
+
+void bubbleSort(int arr[], int size) {
+    if (size == 0) {
+        cout << "Array is empty. Cannot sort.\n";
+        return;
+    }
+    for (int i = 0; i < size - 1; i++) {
+        for (int j = 0; j < size - i - 1; j++) {
+            if (arr[j] > arr[j + 1]) {
+                int temp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
+            }
+        }
+    }
+}
+
+int findMissingNumber(int arr[], int n) {
+    for (int i = 0; i < n - 1; i++)
+        if (arr[i + 1] - arr[i] > 1)
+            return arr[i] + 1;
+    return -1;
+}
+
+int removeDuplicates(int arr[], int n) {
+    if (n == 0) return 0;
+    
+    int j = 1; 
+    for (int i = 1; i < n; i++) {
+        if (arr[i] != arr[i - 1]) {
+            arr[j] = arr[i];
+            j++;
+        }
+    }
+    return j;
+}
+
+
+int main() {
+    int arr[5] = {3, 1, 2, 5, 3};
+    int n = 5;
+
+    bubbleSort(arr, n);
+
+    int missing = findMissingNumber(arr, n);
+    if (missing != -1)
+        cout << "Missing number: " << missing << "\n";
+    else
+        cout << "No missing number\n";
+
+    n = removeDuplicates(arr, n);
+
+    cout << "Array after removing duplicates: ";
+    for (int i = 0; i < n; i++)
+        cout << arr[i] << " ";
+    cout << "\n";
+
+    cout << "Count of distinct elements: " << n << "\n";
+
+    return 0;
+}
